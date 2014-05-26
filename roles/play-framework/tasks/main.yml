@@ -1,7 +1,7 @@
 #install play framework
 ---
 - name: test if play-framework exists
-  stat: path=/url/local/play-framework/play-{{ play_version }}
+  stat: path=/usr/local/play-framework/play-{{ play_version }}
   register: play
 
 - name: create play-framework dir
@@ -24,9 +24,9 @@
   sudo: yes
 
 - name: copy play env variable file to /etc/profile.d/play.sh
-  copy: src=play.sh dest=/etc/profile.d/play.sh owner=root group=root mode=755
+  copy: src=play.sh dest=/etc/profile.d/play.sh owner=root group=root mode=777
   sudo: yes
 
 - name: set up play symlink
-  file: state=link src=/usr/local/play-framework/play-{{ play_version }}/play dest=/usr/bin/play  mode=755
+  file: state=link src=/usr/local/play-framework/play-{{ play_version }}/play dest=/usr/bin/play
   sudo: yes
